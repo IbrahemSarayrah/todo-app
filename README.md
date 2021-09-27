@@ -12,6 +12,14 @@
 
 * LAB - 31 [codesandbox.io deployment link](https://elr1f.csb.app/)
 
+## LAB - 32
+
+* LAB - 32 pull request : []()
+
+* LAB - 32 [codesandbox.io deployment code]()
+
+* LAB - 32 [codesandbox.io deployment link]()
+
 ### Running the app
 
 >
