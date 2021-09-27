@@ -1,34 +1,45 @@
 import React from 'react';
-import { useContext, useState } from 'react';
-import { Card, Elevation, Button } from '@blueprintjs/core';
+import { useContext, useState, useEffect } from 'react';
+import { Card, Elevation, Button,ButtonGroup } from '@blueprintjs/core';
 import { SettingsContext } from '../../context/settings'
 
 function List(props) {
 
-    const settings = useContext(SettingsContext)
+    const settings = useContext(SettingsContext);
 
-    const [startPage, setStartPage] = useState(0);
-    const [endPage, setEndPage] = useState(settings.state.displayPerScreen);
+    const [pages, setPages] = useState([]);
+    const [activePage, setActivePage] = useState([]);
 
-    function setPages() {
-        let page = props.list.slice(startPage, endPage);
-        return page;
-    }
+    useEffect(() => {
+        let start = 0;
+        let end = settings.state.displayPerScreen;
+        const pages = [];
+        if (props.list.length >= settings.state.displayPerScreen) {
+          while (props.list.length > start) {
+            const page = props.list.slice(start, end);
+            pages.push(page);
+    
+            start +=settings.state.displayPerScreen;
+            end +=settings.state.displayPerScreen;
+          }
+          setPages([...pages]);
+          setActivePage([...pages[0]]);
+        }
+      }, [props.list]);
 
-    function nextPage() {
-        setStartPage(startPage + settings.state.displayPerScreen);
-        setEndPage(endPage + settings.state.displayPerScreen);
-    }
+      useEffect(() => {
+        if (!settings.state.showComplete) {
+          const items = props.list.filter((item) => item.complete === false);
+          props.setList([...items]);
+        }
+      }, [settings.state.showComplete]);
 
-    function previousPage() {
-        setStartPage(startPage - settings.state.displayPerScreen);
-        setEndPage(endPage - settings.state.displayPerScreen);
-    }
+      const list =  props.list.length >= settings.state.displayPerScreen ? activePage : props.list
 
     return (
 
         <div className={'cardDiv'}>
-            {setPages(0).map(item => (
+            {list.map(item => (
                 <Card className={'cardlist'} interactive elevation={Elevation.FOUR} key={item.id}>
                     <p>{item.text}</p>
                     <p><small>Assigned to: {item.assignee}</small></p>
@@ -38,10 +49,19 @@ function List(props) {
                     <hr />
                 </Card>
             ))}
-            <div>
-                <Button onClick={() => previousPage()}>Previous</Button>
-                <Button onClick={() => nextPage()}>Next</Button>
-            </div>
+      { props.list
+        && (
+          <ButtonGroup>
+            { pages.map((page, index) => (
+              <Button
+                key={pages.indexOf(page)}
+                onClick={() => setActivePage(pages[index])}
+              >
+                {pages.indexOf(page) + 1}
+              </Button>
+            ))}
+          </ButtonGroup>
+        )}
         </div>
     )
 }

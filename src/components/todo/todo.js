@@ -51,7 +51,7 @@ const ToDo = () => {
       </header>
       <div className="content">
       <Form handleSubmit={handleSubmit} handleChange={handleChange}  />
-      <List toggleComplete={toggleComplete} list={list} deleteItem={deleteItem}/>
+      <List toggleComplete={toggleComplete} list={list} deleteItem={deleteItem} setList={setList}/>
       </div>
     </>
   );
