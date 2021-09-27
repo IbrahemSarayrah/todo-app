@@ -14,11 +14,11 @@
 
 ## LAB - 32
 
-* LAB - 32 pull request : []()
+* LAB - 32 pull request : [https://github.com/IbrahemSarayrah/todo-app/pull/3](https://github.com/IbrahemSarayrah/todo-app/pull/3)
 
-* LAB - 32 [codesandbox.io deployment code]()
+* LAB - 32 [codesandbox.io deployment code](https://codesandbox.io/s/gallant-archimedes-c43f9)
 
-* LAB - 32 [codesandbox.io deployment link]()
+* LAB - 32 [codesandbox.io deployment link](https://c43f9.csb.app/)
 
 ### Running the app
 
