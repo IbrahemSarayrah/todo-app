@@ -7,7 +7,7 @@ import Auth from '../login/auth';
 function List(props) {
 
     const settings = useContext(SettingsContext);
-
+  
     const [pages, setPages] = useState([]);
     const [activePage, setActivePage] = useState([]);
 
@@ -29,7 +29,7 @@ function List(props) {
       }, [props.list]);
 
       useEffect(() => {
-        if (!settings.state.showComplete) {
+        if (!props.list.complete) {
           const items = props.list.filter((item) => item.complete === false);
           props.setList([...items]);
         }
@@ -41,9 +41,9 @@ function List(props) {
 
         <div className={'cardDiv'}>
             {list.map(item => (
-                <Card className={'cardlist'} interactive elevation={Elevation.FOUR} key={item.id}>
-                    <p>{item.text}</p>
-                    <p><small>Assigned to: {item.assignee}</small></p>
+                <Card className={'cardlist'} interactive elevation={Elevation.FOUR} key={item.toDoid}>
+                    <p>{item.toDoItem}</p>
+                    <p><small>Assigned to: {item.assignedTo}</small></p>
                     <p><small>Difficulty: {item.difficulty}</small></p>
                     <Auth capability="update">
                     <Button type="button" intent={item.complete ? 'success' : 'danger'} onClick={() => props.toggleComplete(item.id)}>Complete: {item.complete.toString()}</Button>

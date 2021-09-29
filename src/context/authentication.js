@@ -7,12 +7,13 @@ import superagent from "superagent";
 
 export const AuthContext = React.createContext();
 
-const serverAPI = 'https://mid-project-01.herokuapp.com';
+const serverAPI = 'https://todo-api02.herokuapp.com';
 
 export default function AuthProvider(props) {
 
     const [loggedIn, setLoggedIn] = useState(false);
     const [user, setUser] = useState({});
+    const [token, setToken] = useState(null);
 
     const login = async (username, password) => {
 
@@ -27,6 +28,7 @@ export default function AuthProvider(props) {
             alert('Invalid username or password');
         }
     }
+
 
     const signup = async (userName, passWord, firstname , lastname , email, role) => {
         try {
@@ -50,7 +52,6 @@ export default function AuthProvider(props) {
         if (token) {
             const user = jwt.decode(token);
             handleLoginState(true, user);
-
             cookie.save('token', token)
         } else {
             handleLoginState(false, {});
@@ -70,7 +71,9 @@ export default function AuthProvider(props) {
     useEffect(() => {
         const SavedCookieToken = cookie.load('token');
         validateJWT(SavedCookieToken);
+        setToken(SavedCookieToken)
     }, []);
+
 
     const can = (capability) => {
         return user?.capabilities?.includes(capability);
@@ -82,7 +85,8 @@ export default function AuthProvider(props) {
         login,
         logout,
         user,
-        can
+        can,
+        token
     }
 
     return (
