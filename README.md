@@ -32,11 +32,11 @@
 
 ### Authors: Ibrahem Sarayrah , Eman Mkhareez , Osama Baker
 
-* LAB - 33 pull request : [https://github.com/IbrahemSarayrah/todo-app/pull/5](https://github.com/IbrahemSarayrah/todo-app/pull/5)
+* LAB - 34 pull request : [https://github.com/IbrahemSarayrah/todo-app/pull/7](https://github.com/IbrahemSarayrah/todo-app/pull/7)
 
-* LAB - 33 [codesandbox.io deployment code](https://codesandbox.io/s/competent-neumann-cdmb4)
+* LAB - 34 [codesandbox.io deployment code](https://codesandbox.io/s/ancient-sunset-gvm4s)
 
-* LAB - 33 [codesandbox.io deployment link](https://cdmb4.csb.app/)
+* LAB - 34 [codesandbox.io deployment link](https://gvm4s.csb.app/)
 
 ### Running the app
 
