@@ -7,7 +7,7 @@ import Auth from '../login/auth';
 function List(props) {
 
     const settings = useContext(SettingsContext);
-
+  
     const [pages, setPages] = useState([]);
     const [activePage, setActivePage] = useState([]);
 
